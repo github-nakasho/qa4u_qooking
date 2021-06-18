@@ -23,4 +23,4 @@ if __name__ == '__main__':
     solution, energy, broken = sp.solve_problem(model=model, feed_dict=parameters)
     print('Finish solving problem !')
     # visualize solution
-    vs.visualize_solution(solution, energy, broken, instance_data)    
+    vs.visualize_solution(solution, energy, broken, instance_data)
