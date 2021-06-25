@@ -7,7 +7,7 @@ def solve_problem(model, feed_dict):
     # convert to qubo
     qubo, offset = model.to_qubo(feed_dict=feed_dict)
     # solve with OpenJij (SA)
-    sampler = oj.SASampler(num_reads=100, num_sweeps=100)
+    sampler = oj.SASampler(num_reads=1, num_sweeps=10)
     response = sampler.sample_qubo(Q=qubo)
     # take mininum state
     dict_solution = response.first.sample

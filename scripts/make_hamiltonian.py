@@ -16,15 +16,14 @@ def make_hamiltonian(instance_data):
         num = instance_data['food_num_dict'][food]
         x[num] = 1
     # set hyperparameters
-    lamb1 = Placeholder('h1')
-    # set the number of foods limit constraint
-    sum_x = sum([x[i] for i in range(num_foods)])
-    const = (N-sum_x) ** 2
-    h1 = Constraint(const, label='h1')
+    nu1 = Placeholder('h1')
+    # set the number of foods constraint
+    const = sum([x[i] for i in range(num_foods)]) - N
+    h1 = Constraint(const, label='h1')    
     # set objective function
     obj = - np.dot(x, np.dot(freq_matrix, x))
     # compute total hamiltonian
-    hamiltonian = obj + lamb1 * h1
+    hamiltonian = obj - nu1 * h1
     # compile
     model = hamiltonian.compile()
     return model
